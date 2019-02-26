@@ -1,7 +1,7 @@
 package main
 
 import (
-	"foruka-go/controllers"
+	"github.com/mntky/foruka-go/controllers"
 	"github.com/gin-gonic/gin"
 	"reflect"
 	"strconv"

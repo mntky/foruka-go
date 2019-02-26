@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"foruka-go/models"
+	"github.com/mntky/foruka-go/models"
 )
 
 type User struct {
