@@ -2,6 +2,7 @@ package models //Model
 
 import (
 	//"database/sql"
+	"fmt"
 	"github.com/jmoiron/sqlx"
 	_"github.com/go-sql-driver/mysql"
 )
@@ -47,10 +48,10 @@ func (m UserRepository) GetByID(id int) *User {
 	var user = User{ID: id}
 	db, err := sqlx.Connect("postgres", "user=foo dbname=bar sslmode=disable")
     if err != nil {
-        log.Fatalln(err)
+        fmt.Println(err)
     }
 	//err := db.Get(&user)
-	if has {
+	if err {
 		return &user
 	}
 	return nil
