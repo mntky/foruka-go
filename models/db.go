@@ -45,6 +45,10 @@ func NewUserRepostiroy() UserRepository {
 
 func (m UserRepository) GetByID(id int) *User {
 	var user = User{ID: id}
+	db, err := sqlx.Connect("postgres", "user=foo dbname=bar sslmode=disable")
+    if err != nil {
+        log.Fatalln(err)
+    }
 	has, _ := db.Get(&user)
 	if has {
 		return &user
