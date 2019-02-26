@@ -1,7 +1,7 @@
 package models //Model
 
 import (
-	"github.com/go-gorm/xorm"
+	"github.com/jmoiron/sqlx"
 	_"github.com/go-sql-driver/mysql"
 )
 
@@ -16,13 +16,19 @@ type UserRepository struct {
 }
 
 //connect mysql
-func init() {
-	var err error
-	engine, err = xorm.NewEngine("mysql", "mntky:123qwEcc@/forukago")
+func NewMySQL(dsn string) (*sqlx.DB, error) {
+	DB, err := sqlx.Open("mysql", dsn)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
+	err = DB.Ping()
+	if err != nil {
+		return nil, err
+	}
+
+	return DB, nil
 }
+
 
 //newuser
 func NewUser(id int, username string) User {
