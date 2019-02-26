@@ -7,22 +7,27 @@ import (
 
 func main() {
 	r := gin.Default()
-	r.LoadHTMLGlob("public/*")
+	r.LoadHTMLGlob("view/*") 
+	r.Static("/css", "./css")
 
-	r.Static("/css", "./public")
-
-	//http://192.168.11.100:8080/
+	//home/
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html",
-		gin.H{
+		c.HTML(http.StatusOK, "home.html", gin.H{
 			"title": "foruka-go",
 		})
 	})
-		/*
-		c.JSON(200, gin.H{
-			"message": "pong",
+
+	//user
+	r.GET("/user", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "user.html", gin.H{
 		})
-		*/
+	})
+
+	//login
+	r.GET("/login", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "login.html", gin.H{
+		})
+	})
 
 	r.Run(":8080")
 }
