@@ -1,7 +1,7 @@
 package models //Model
 
 import (
-	"database/sql"
+	//"database/sql"
 	"github.com/jmoiron/sqlx"
 	_"github.com/go-sql-driver/mysql"
 )
@@ -49,7 +49,7 @@ func (m UserRepository) GetByID(id int) *User {
     if err != nil {
         log.Fatalln(err)
     }
-	has, _ := db.Get(&user)
+	//err := db.Get(&user)
 	if has {
 		return &user
 	}
