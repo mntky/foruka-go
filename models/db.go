@@ -52,4 +52,5 @@ func (m UserRepository) GetByID(id int) *User {
     }
 	//err := db.Get(&user)
 	//return $user
+	return "user"
 }
