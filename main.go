@@ -29,5 +29,12 @@ func main() {
 		})
 	})
 
+	//lxd-controller
+	r.GET("/lxd", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "login.html", gin.H{
+		})
+	})
+
+
 	r.Run(":8080")
 }
