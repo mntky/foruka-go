@@ -51,8 +51,5 @@ func (m UserRepository) GetByID(id int) *User {
         fmt.Println(err)
     }
 	//err := db.Get(&user)
-	if err {
-		return &user
-	}
-	return nil
+	return $user
 }
