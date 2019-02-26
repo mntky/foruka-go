@@ -45,7 +45,7 @@ func NewUserRepostiroy() UserRepository {
 
 func (m UserRepository) GetByID(id int) *User {
 	var user = User{ID: id}
-	has, _ := engine.Get(&user)
+	has, _ := db.Get(&user)
 	if has {
 		return &user
 	}
