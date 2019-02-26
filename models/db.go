@@ -1,11 +1,11 @@
 package models //Model
 
 import (
+	"database/sql"
 	"github.com/jmoiron/sqlx"
 	_"github.com/go-sql-driver/mysql"
 )
 
-var engine *xorm.Engine
 
 type User struct {
 	ID			int		`json:"id"		xorm:"'id'"`
@@ -40,10 +40,10 @@ func NewUser(id int, username string) User {
 
 //NewUserRepository
 func NewUserRepostiroy() UserRepository {
-	return UserRepostitory{}
+	return UserRepository{}
 }
 
-func (m UserRepostiroy) GetByID(id int) *User {
+func (m UserRepository) GetByID(id int) *User {
 	var user = User{ID: id}
 	has, _ := engine.Get(&user)
 	if has {
