@@ -2,11 +2,13 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	//"net/http"
+	"net/http"
 	//"log"
 	"fmt"
+	//"github.com/gomodule/redigo/redis"
 	//"github.com/gin-gonic/contrib/sessions"
 	//"html/template"
+	"github.com/mntky/foruka-go/testmodels"
 )
 
 //top page
@@ -30,14 +32,14 @@ func Auth(c *gin.Context) {
 }
 
 func main() {
+	testmodels.initCache()
+
 	r := gin.Default()
 	r.LoadHTMLGlob("view/*")
 	r.LoadHTMLGlob("templates/*.tmpl")
 	r.Static("/css", "./css")
 
-	r.GET("/",  Top)			//Top page
-	r.GET("/login", Login)		//login page
-	r.POST("/auth", Auth)		//login process
-
-	r.Run(":8080")
+	http.HandleFunc("/signin", Signin)
+	http.HandleFunc("/welcome", Welcome)
+	log.Datal(http.ListenAndServe(":8080", nil))
 }
