@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	//"log"
+	"log"
 	"fmt"
 	//"github.com/gomodule/redigo/redis"
 	//"github.com/gin-gonic/contrib/sessions"
@@ -32,7 +32,7 @@ func Auth(c *gin.Context) {
 }
 
 func main() {
-	models.initCache()
+	testmodels.initCache()
 
 	r := gin.Default()
 	r.LoadHTMLGlob("view/*")
@@ -41,5 +41,5 @@ func main() {
 
 	http.HandleFunc("/signin", Signin)
 	http.HandleFunc("/welcome", Welcome)
-	log.Datal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }

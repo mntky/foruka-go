@@ -22,7 +22,7 @@ type Credentials struct {
 	Password	string	`json:"password"`
 }
 
-func initCache() {
+func InitCache() {
 	conn, err := redis.DialURL("redis://localhost")
 	if err != nil {
 		panic(err)
