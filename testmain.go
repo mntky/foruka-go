@@ -32,7 +32,7 @@ func Auth(c *gin.Context) {
 }
 
 func main() {
-	testmodels.initCache()
+	models.initCache()
 
 	r := gin.Default()
 	r.LoadHTMLGlob("view/*")
