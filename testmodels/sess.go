@@ -31,6 +31,7 @@ func InitCache() {
 }
 
 func Signin(w http.ResponseWriter, r *http.Request) {
+	InitCache()
 	var c Credentials
 	err := json.NewDecoder(r.Body).Decode(&c)
 	if err != nil {

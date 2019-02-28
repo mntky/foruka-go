@@ -19,7 +19,7 @@ func Top(c *gin.Context) {
 
 //login page 
 func Login(c *gin.Context) {
-	c.HTML(200, "login.tmpl", nil)
+	c.HTML(200, "login2.tmpl", nil)
 }
 
 //login process
