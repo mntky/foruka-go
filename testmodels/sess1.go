@@ -72,7 +72,7 @@ func Welcome(g *gin.Context) {
 		}
 		return 
 	}
-	sessionToken := c.Value
+	sessionToken := c
 
 	response, err := cache.Do("GET", sessionToken)
 	if err != nil {
@@ -82,7 +82,7 @@ func Welcome(g *gin.Context) {
 		return 
 	}
 
-	c.HTML(200, "success.tmpl", nil)
+	g.HTML(200, "success.tmpl", nil)
 }
 
 
