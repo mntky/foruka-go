@@ -18,12 +18,6 @@ var user = map[string]string {
 	"uesr2":	"123qwEcc@",
 }
 
-type Credentials struct {
-	Username	string	`json:"username"`
-	Password	string	`json:"password"`
-}
-
-
 
 func InitCache() {
 	conn, err := redis.DialURL("redis://localhost")
@@ -35,7 +29,6 @@ func InitCache() {
 
 func Signin(g *gin.Context, uname, pass string) {
 	InitCache()
-	var c Credentials
 	fmt.Println("ok1")
 /*
 	err := json.NewDecoder(r.Body).Decode(&c)
@@ -48,7 +41,7 @@ func Signin(g *gin.Context, uname, pass string) {
 	getpass, ok := user[uname]
 
 	if !ok || getpass != pass {
-		return	"Missing User or Password"
+		return
 	}
 
 	fmt.Println("ok2")
@@ -58,7 +51,7 @@ func Signin(g *gin.Context, uname, pass string) {
 
 	_, err = cache.Do("SETEX", sessionToken, "120", uname)
 	if err != nil {
-		return	"cache err"
+		return
 	}
 
 	fmt.Println("ok3")

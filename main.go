@@ -33,11 +33,7 @@ func Auth(c *gin.Context) {
 	var authdata Authdata
 	c.BindJSON(&authdata)
 	fmt.Printf("ok %s", authdata)
-	err := testmodels.Signin(c, authdata.Username, authdata.Password)
-	if err != nil {
-		c.HTML(200, "success.tmpl", nil)
-	}
-	fmt.Println(err)
+	testmodels.Signin(c, authdata.Username, authdata.Password)
 }
 
 func main() {
