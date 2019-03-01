@@ -9,6 +9,11 @@ import (
 	//"html/template"
 )
 
+type Authdata struct {
+	Username	string	`json:"username"`
+	Password	string	`json:"password"`
+}
+
 //top page
 func Top(c *gin.Context) {
 	c.HTML(200, "top.tmpl", gin.H{
@@ -24,9 +29,9 @@ func Login(c *gin.Context) {
 
 //login process
 func Auth(c *gin.Context) {
-	c.Request.ParseForm()
-	fmt.Println(c.Request.Form["mail"])
-	fmt.Println(c.Request.Form["password"])
+	var authdata Authdata
+	c.BindJSON(&authdata)
+	fmt.Printf(authdata)
 }
 
 func main() {
