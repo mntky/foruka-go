@@ -4,7 +4,7 @@ import (
 	//"log"
 	"net/http"
 	"github.com/gomodule/redigo/redis"
-	//"fmt"
+	"fmt"
 	//"encoding/json"
 	"github.com/satori/go.uuid"
 	"time"
@@ -36,6 +36,7 @@ func InitCache() {
 func Signin(g *gin.Context, uname, pass string) {
 	InitCache()
 	var c Credentials
+	fmt.Println("ok1")
 /*
 	err := json.NewDecoder(r.Body).Decode(&c)
 	if err != nil {
@@ -50,6 +51,8 @@ func Signin(g *gin.Context, uname, pass string) {
 		return 
 	}
 
+	fmt.Println("ok2")
+
 	u, err := uuid.NewV4()
 	sessionToken := u.String()
 
@@ -57,6 +60,8 @@ func Signin(g *gin.Context, uname, pass string) {
 	if err != nil {
 		return 
 	}
+
+	fmt.Println("ok3")
 
 	http.SetCookie(g.Writer, &http.Cookie{
 		Name:		"session_token",
