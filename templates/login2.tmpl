@@ -16,8 +16,8 @@
         $("#button").click( function(){
             var url = "http://192.168.11.100:8081/signin"
                 var JSONdata = {
-                    value1: $("#name").val(),
-                    value2: $("#pass").val()      
+                    username: $("#name").val(),
+                    password: $("#pass").val()      
                 };
             alert(JSON.stringify(JSONdata));
             $.ajax({
