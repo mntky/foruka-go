@@ -30,8 +30,13 @@ func InitCache() {
 	cache = conn
 }
 
+func Test(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("test ok")
+	}
+
 func Signin(w http.ResponseWriter, r *http.Request) {
 	InitCache()
+	fmt.Println("ok")
 	var c Credentials
 	err := json.NewDecoder(r.Body).Decode(&c)
 	if err != nil {
