@@ -51,7 +51,7 @@ func Signin(w http.ResponseWriter, r *http.Request) {
 	password := r.FormValue("password")
 
 	fmt.Printf("%s : %s", username, password)
-	fmt.Fprint(w, "signin ok1")
+	//fmt.Fprint(w, "signin ok1")
 
 	expectedPassword, ok := user[c.Username]
 
@@ -60,7 +60,7 @@ func Signin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprint(w, "signin ok2")
+	//fmt.Fprint(w, "signin ok2")
 
 	u, err := uuid.NewV4()
 	sessionToken := u.String()
