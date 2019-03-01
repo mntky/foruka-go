@@ -37,7 +37,7 @@ func Test(w http.ResponseWriter, r *http.Request) {
 
 func Signin(w http.ResponseWriter, r *http.Request) {
 	InitCache()
-	fmt.Fprint(w, "signin ok")
+	fmt.Fprint(w, r)
 	var c Credentials
 	err := json.NewDecoder(r.Body).Decode(&c)
 	if err != nil {
