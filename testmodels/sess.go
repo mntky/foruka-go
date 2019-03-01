@@ -31,7 +31,7 @@ func InitCache() {
 }
 
 func Test(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("test ok")
+	fmt.Fprint(w, "test ok")
 	return
 	}
 
