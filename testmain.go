@@ -14,5 +14,6 @@ func main() {
 
 	http.HandleFunc("/signin", testmodels.Signin)
 	http.HandleFunc("/welcome", testmodels.Welcome)
+	http.HandleFunc("/test", testmodels.Test)
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }

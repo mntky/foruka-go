@@ -14,7 +14,7 @@
     $(function(){
         $("#response").html("Response Values");
         $("#button").click( function(){
-            var url = $("#url_post").val();
+            var url = "http://192.168.11.100:8081/signin"
                 var JSONdata = {
                     value1: $("#name").val(),
                     value2: $("#pass").val()      
@@ -50,13 +50,14 @@
 	<div id="header">
 		<div class="top_banner">
 			<h1>
-				<a id="rinku" href="http://192.168.11.100:8080/">foruka-go</a>
+				<a id="rinku" href="http://192.168.11.100:8080">foruka-go</a>
 			</h1>
 			<hr>
 		</div>
 	</div>
 </div>
 
+<p>
        
 <p><input name="username" type="text" id="name"class="form-control" placeholder="mail address" required> <br> </p>
         
