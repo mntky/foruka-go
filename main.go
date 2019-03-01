@@ -31,7 +31,8 @@ func Login(c *gin.Context) {
 func Auth(c *gin.Context) {
 	var authdata Authdata
 	c.BindJSON(&authdata)
-	fmt.Printf(authdata)
+	fmt.Printf("ok %s", authdata)
+	c.HTML(200, "success.tmpl", nil)
 }
 
 func main() {
