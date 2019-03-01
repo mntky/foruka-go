@@ -41,9 +41,12 @@ func Signin(w http.ResponseWriter, r *http.Request) {
 	var c Credentials
 	err := json.NewDecoder(r.Body).Decode(&c)
 	if err != nil {
+		fmt.Println(r.Body)
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
+
+	fmt.Fprint(w, "signin ok1")
 
 	expectedPassword, ok := user[c.Username]
 
@@ -51,6 +54,8 @@ func Signin(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusUnauthorized)
 		return
 	}
+
+	fmt.Fprint(w, "signin ok2")
 
 	u, err := uuid.NewV4()
 	sessionToken := u.String()
