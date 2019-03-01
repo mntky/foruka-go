@@ -61,7 +61,7 @@ func Signin(g *gin.Context, uname, pass string) {
 		Value:		sessionToken,
 		Expires:	time.Now().Add(120 * time.Second),
 	})
-	Welcome()
+	Welcome(g)
 }
 
 func Welcome(g *gin.Context) {
