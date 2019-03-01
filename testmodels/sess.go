@@ -39,12 +39,16 @@ func Signin(w http.ResponseWriter, r *http.Request) {
 	InitCache()
 	fmt.Fprint(w, r)
 	var c Credentials
+/*
 	err := json.NewDecoder(r.Body).Decode(&c)
 	if err != nil {
 		fmt.Println(r.Body)
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
+*/
+	username := r.FormValue("username")
+	password := r.FormValue("password")
 
 	fmt.Fprint(w, "signin ok1")
 
