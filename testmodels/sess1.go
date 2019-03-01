@@ -61,9 +61,10 @@ func Signin(g *gin.Context, uname, pass string) {
 		Value:		sessionToken,
 		Expires:	time.Now().Add(120 * time.Second),
 	})
+	Welcome()
 }
 
-func Welcome(w http.ResponseWriter, r *http.Request) {
+func Welcome(g *gin.Context) {
 	c, err := r.Cookie("session_token")
 	if err != nil {
 		if err == http.ErrNoCookie {
@@ -80,6 +81,8 @@ func Welcome(w http.ResponseWriter, r *http.Request) {
 	if response == nil {
 		return 
 	}
+
+	c.HTML(200, "success.tmpl", nil)
 }
 
 
