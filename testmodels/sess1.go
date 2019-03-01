@@ -65,7 +65,7 @@ func Signin(g *gin.Context, uname, pass string) {
 }
 
 func Welcome(g *gin.Context) {
-	c, err := r.Cookie("session_token")
+	c, err := g.Cookie("session_token")
 	if err != nil {
 		if err == http.ErrNoCookie {
 			return 
