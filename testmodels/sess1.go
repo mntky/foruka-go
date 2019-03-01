@@ -4,10 +4,11 @@ import (
 	//"log"
 	"net/http"
 	"github.com/gomodule/redigo/redis"
-	"fmt"
+	//"fmt"
 	//"encoding/json"
 	"github.com/satori/go.uuid"
 	"time"
+	"github.com/gin-gonic/gin"
 )
 
 var cache redis.Conn
@@ -22,6 +23,8 @@ type Credentials struct {
 	Password	string	`json:"password"`
 }
 
+
+
 func InitCache() {
 	conn, err := redis.DialURL("redis://localhost")
 	if err != nil {
@@ -30,7 +33,7 @@ func InitCache() {
 	cache = conn
 }
 
-func Signin(name, pass string) {
+func Signin(g *gin.Context, uname, pass string) {
 	InitCache()
 	var c Credentials
 /*
@@ -44,20 +47,18 @@ func Signin(name, pass string) {
 	expectedPassword, ok := user[c.Username]
 
 	if !ok || expectedPassword != pass {
-		w.WriteHeader(http.StatusUnauthorized)
-		return
+		return 
 	}
 
 	u, err := uuid.NewV4()
 	sessionToken := u.String()
 
-	_, err = cache.Do("SETEX", sessionToken, "120", name)
+	_, err = cache.Do("SETEX", sessionToken, "120", uname)
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		return
+		return 
 	}
 
-	http.SetCookie(w, &http.Cookie{
+	http.SetCookie(g.Writer, &http.Cookie{
 		Name:		"session_token",
 		Value:		sessionToken,
 		Expires:	time.Now().Add(120 * time.Second),
@@ -68,25 +69,19 @@ func Welcome(w http.ResponseWriter, r *http.Request) {
 	c, err := r.Cookie("session_token")
 	if err != nil {
 		if err == http.ErrNoCookie {
-			w.WriteHeader(http.StatusUnauthorized)
-			return
+			return 
 		}
-		w.WriteHeader(http.StatusBadRequest)
-		return
+		return 
 	}
 	sessionToken := c.Value
 
 	response, err := cache.Do("GET", sessionToken)
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		return
+		return 
 	}
 	if response == nil {
-		w.WriteHeader(http.StatusUnauthorized)
-		return
+		return 
 	}
-
-	w.Write([]byte(fmt.Sprintf("welcome %s ! ", response)))
 }
 
 
