@@ -61,7 +61,7 @@ func Signin(g *gin.Context, uname, pass string) {
 		Value:		sessionToken,
 		Expires:	time.Now().Add(120 * time.Second),
 	})
-	Welcome(g)
+	g.Redirect(http.StatusMovedPermanently,"http://192.168.11.100/welcome")
 }
 
 func Welcome(g *gin.Context) {
