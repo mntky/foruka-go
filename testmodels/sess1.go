@@ -45,10 +45,10 @@ func Signin(g *gin.Context, uname, pass string) {
 		return
 	}
 */
-	expectedPassword, ok := user[c.Username]
+	getpass, ok := user[uname]
 
-	if !ok || expectedPassword != pass {
-		return 
+	if !ok || getpass != pass {
+		return	"Missing User or Password"
 	}
 
 	fmt.Println("ok2")
