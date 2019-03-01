@@ -46,6 +46,11 @@ func Signin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 */
+	err := r.ParseForm()
+	if err != nil{
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
 	username := r.FormValue("username")
 	password := r.FormValue("password")
 
