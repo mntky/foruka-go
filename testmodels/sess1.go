@@ -58,7 +58,7 @@ func Signin(g *gin.Context, uname, pass string) {
 
 	_, err = cache.Do("SETEX", sessionToken, "120", uname)
 	if err != nil {
-		return 
+		return	"cache err"
 	}
 
 	fmt.Println("ok3")

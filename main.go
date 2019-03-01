@@ -7,7 +7,7 @@ import (
 	"fmt"
 	//"github.com/gin-gonic/contrib/sessions"
 	//"html/template"
-	"github.com/mntky/foruka-go/testmodels/"
+	"github.com/mntky/foruka-go/testmodels"
 )
 
 type Authdata struct {
@@ -33,8 +33,11 @@ func Auth(c *gin.Context) {
 	var authdata Authdata
 	c.BindJSON(&authdata)
 	fmt.Printf("ok %s", authdata)
-	testmodels.Signin(authdata.username, authdata.password)
-	c.HTML(200, "success.tmpl", nil)
+	err := testmodels.Signin(c, authdata.Username, authdata.Password)
+	if err != nil {
+		c.HTML(200, "success.tmpl", nil)
+	}
+	fmt.Println(err)
 }
 
 func main() {
