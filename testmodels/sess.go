@@ -50,6 +50,7 @@ func Signin(w http.ResponseWriter, r *http.Request) {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
 
+	fmt.Printf("%s : %s", username, password)
 	fmt.Fprint(w, "signin ok1")
 
 	expectedPassword, ok := user[c.Username]
