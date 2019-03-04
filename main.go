@@ -41,7 +41,6 @@ func main() {
 	r.LoadHTMLGlob("templates/*.tmpl")
 	r.Static("/css", "templates/css")
 
-
 	r.GET("/",  Top)		//Top page
 	r.GET("/login", Login)		//login page
 	r.POST("/auth", Auth)		//login process
