@@ -17,10 +17,7 @@ type Authdata struct {
 
 //top page
 func Top(c *gin.Context) {
-	c.HTML(200, "top.tmpl", gin.H{
-		"id":		"aa",
-		"user":		"aa",
-	})
+	c.HTML(200, "top.tmpl", nil)
 }
 
 //login page 
