@@ -38,11 +38,11 @@ func Auth(c *gin.Context) {
 
 func main() {
 	r := gin.Default()
-	r.LoadHTMLGlob("view/*")
 	r.LoadHTMLGlob("templates/*.tmpl")
-	r.Static("/css", "./css")
+	r.Static("/css", "templates/css")
 
-	r.GET("/",  Top)			//Top page
+
+	r.GET("/",  Top)		//Top page
 	r.GET("/login", Login)		//login page
 	r.POST("/auth", Auth)		//login process
 
