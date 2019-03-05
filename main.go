@@ -15,36 +15,15 @@ type Authdata struct {
 	Password	string	`json:"password"`
 }
 
-//top page
-func Top(c *gin.Context) {
-	c.HTML(200, "top.tmpl", gin.H{
-		"id":		"aa",
-		"user":		"aa",
-	})
-}
-
-//login page 
-func Login(c *gin.Context) {
-	c.HTML(200, "login2.tmpl", nil)
-}
-
-//login process
-func Auth(c *gin.Context) {
-	var authdata Authdata
-	c.BindJSON(&authdata)
-	fmt.Printf("ok %s", authdata)
-	testmodels.Signin(c, authdata.Username, authdata.Password)
-}
-
 func main() {
 	r := gin.Default()
-	r.LoadHTMLGlob("view/*")
 	r.LoadHTMLGlob("templates/*.tmpl")
-	r.Static("/css", "./css")
+	r.Static("/css", "templates/css")
 
-	r.GET("/",  Top)			//Top page
-	r.GET("/login", Login)		//login page
-	r.POST("/auth", Auth)		//login process
+	r.GET("/",  controllers.Top)					//Top page
+	r.GET("/login", controllers.Login)				//login page
+	r.POST("/auth", controllers.Auth)				//login process
+	r.GET("/welcome", controllers.Welcome)	//login process
 
 	r.Run(":8080")
 }
