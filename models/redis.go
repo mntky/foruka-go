@@ -9,5 +9,6 @@ func InitCache() {
 	if err != nil {
 		panic(err)
 	}
-	return conn
+	cache := conn
+	return cache
 }
