@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/mntky/foruka-go/models"
+	"github.com/gin-gonic/gin"
 )
 
 func Top(c *gin.Context) {

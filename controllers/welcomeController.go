@@ -1,9 +1,9 @@
 package controllers
 
 import(
-
+	"github.com/gin-gonic/gin"
 )
 
 func Welcome(g *gin.Context) {
-	c.HTML(200, "welcome.tmpl", nil){
+	g.HTML(200, "welcome.tmpl", nil)
 }
