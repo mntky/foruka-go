@@ -4,7 +4,6 @@ import (
 	"github.com/mntky/foruka-go/models"
 	"github.com/gin-gonic/gin"
 	"github.com/satori/go.uuid"
-	"github.com/mntky/foruka-go/models"
 	"net/http"
 	"time"
 	//"fmt"
