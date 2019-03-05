@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/gomodule/redigo/redis"
+	"fmt"
 )
 
 func InitCache() {
@@ -9,6 +10,6 @@ func InitCache() {
 	if err != nil {
 		panic(err)
 	}
-	cache := conn
-	return cache
+	fmt.Println(conn)
+	return conn
 }
