@@ -40,7 +40,7 @@ func Auth(g *gin.Context) {
 
 	//Create token of cookie, and it in sessionToken
 	u, err := uuid.NewV4()
-	sessionToken := u.String
+	sessionToken := u.String()
 
 	//Set SessionToken to Redis 
 	_, err = cache.Do("SETEX", sessionToken, "120", data.Username)
