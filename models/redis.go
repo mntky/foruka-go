@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func InitCache() {
+func InitCache() redis.Conn{
 	conn, err := redis.DialURL("redis://localhost")
 	if err != nil {
 		panic(err)
