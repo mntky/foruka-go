@@ -7,7 +7,9 @@ import(
 )
 
 func Welcome(g *gin.Context) {
-	cache := models.InitCache()
+	pool := models.NewPool(0)
+	redi := pool.Get()
+	defer redi.Close()
 
 	c, err := g.Cookie("session_token")
 	if err != nil {
@@ -18,7 +20,7 @@ func Welcome(g *gin.Context) {
 	}
 	sessionToken := c
 
-	response, err := cache.Do("GET", sessionToken)
+	response, err := redi.Do("GET", sessionToken)
 	if err != nil {
 		return
 	}
