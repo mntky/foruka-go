@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/mntky/foruka-go/models"
+	"github.com/mntky/foruka-go/testcode/b-test/models"
 	"github.com/gin-gonic/gin"
 	"github.com/satori/go.uuid"
 	"net/http"
