@@ -18,7 +18,7 @@ func Welcome(g *gin.Context) {
 	if err != nil {
 		return
 	}
-	gi response == nil {
+	if response == nil {
 		return
 	}
 
