@@ -2,12 +2,12 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/mntky/foruka-go/controllers"
+	//"fmt"
 	//"net/http"
 	//"log"
-	"fmt"
 	//"github.com/gin-gonic/contrib/sessions"
 	//"html/template"
-	"github.com/mntky/foruka-go/testmodels"
 )
 
 type Authdata struct {

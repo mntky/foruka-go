@@ -55,5 +55,4 @@ func Auth(g *gin.Context) {
 		Expires:	time.Now().Add(120 * time.Second),
 	})
 
-	return
 }
