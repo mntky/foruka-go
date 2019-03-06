@@ -43,7 +43,7 @@ func Auth(g *gin.Context) {
 	sessionToken := u.String()
 
 	//Set SessionToken to Redis 
-	_, err = cache.Do("SETEX", sessionToken, "120", data.Username)
+	_, err = cache.Do("SETEX", sessionToken, "1800", data.Username)
 	if err != nil {
 		return
 	}
