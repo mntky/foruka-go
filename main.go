@@ -10,11 +10,6 @@ import (
 	//"html/template"
 )
 
-type Authdata struct {
-	Username	string	`json:"username"`
-	Password	string	`json:"password"`
-}
-
 func main() {
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*.tmpl")
