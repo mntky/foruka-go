@@ -14,12 +14,6 @@ type POSTdata struct {
 	Username	string	`json:"username"`
 	Password	string	`json:"password"`
 }
-/*
-var user = map[string]string {
-	"user1":	"123qwEcc",
-	"user2":	"123qwEcc@",
-}
-*/
 
 //Default Login Page
 func Login(g *gin.Context) {
@@ -31,13 +25,6 @@ func Login(g *gin.Context) {
 func Auth(g *gin.Context) {
 	var data POSTdata
 	g.BindJSON(&data)
-
-	/*/check password with map
-	getpass, check := user[data.Username]
-	if !check || getpass != data.Password {
-		return
-	}
-	*/
 
 	//check passwordd with redis
 	pool := models.NewPool(1)
