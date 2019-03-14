@@ -19,6 +19,8 @@ func main() {
 	r.GET("/login", controllers.Login)				//login page
 	r.POST("/auth", controllers.Auth)				//login process
 	r.GET("/welcome", controllers.Welcome)	//login process
+	r.GET("/signup", controllers.Signup)	//sign up
+	r.POST("/register", controllers.Register)		//register process
 
 	r.Run(":8080")
 }
