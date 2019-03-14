@@ -59,5 +59,4 @@ func Auth(g *gin.Context) {
 		Value:		sessionToken,
 		Expires:	time.Now().Add(120 * time.Second),
 	})
-
 }
