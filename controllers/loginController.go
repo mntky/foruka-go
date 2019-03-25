@@ -29,13 +29,18 @@ func Auth(g *gin.Context) {
 	//check passwordd with redis
 	pool := models.NewPool(1)
 	redi := pool.Get()
-	fmt.Println(data.Username)
+	//fmt.Println(data.Username)
 	p, err := redis.String(redi.Do("GET", data.Username))
-	fmt.Println(p)
+	//fmt.Println(p)
 	if err != nil {
 		return
 	}
-	if p != data.Password {
+
+	potato := data.Username + data.Password
+	passhash, salt := models.Create(data.Password, potato)
+	p, err = redis.String(redi.Do("GET", data.Username))
+	if passhash != p {
+		fmt.Println(salt)
 		return
 	}
 	redi.Close()
