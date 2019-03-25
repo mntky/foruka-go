@@ -45,4 +45,6 @@ func Register(g *gin.Context){
 		return
 	}
 	redi.Close()
+
+	g.Redirect(http.StatusMovedPermanently, "http://192.168.11.100:8080/login")
 }
