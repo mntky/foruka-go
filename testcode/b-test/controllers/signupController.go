@@ -5,34 +5,46 @@ import(
 	"github.com/mntky/foruka-go/models"
 	"github.com/gomodule/redigo/redis"
 	"fmt"
-	"strings"
 	//"net/http"
+	"encoding/json"
 )
+
+type POST struct {
+	Username	string
+	Password	string
+}
 
 func Signup(g *gin.Context) {
 	g.HTML(200, "signup.tmpl", nil)
 }
 
 func Register(g *gin.Context){
-	var uname, passwd string
 	defer g.Redirect(301, "/login")
 	defer g.Abort()
 
 	g.Request.ParseForm()
-	uname = strings.Join(g.Request.PostForm["username"]," ") 
-	passwd = strings.Join(g.Request.PostForm["password"]," ") 
+	fmt.Println(g.Request.Form["username"])
+	fmt.Println(g.Request.Form["passowrd"])
+
+
+	j := []byte(`{"Username":g.Param("username"),"Password":g.Param("password")}`)
+	var pos POST
+	json.Unmarshal(j, &pos)
+
+	fmt.Println(&pos)
+	data := pos
 
 	pool := models.NewPool(1)
 	redi := pool.Get() //connect redis
-	p, err := redis.String(redi.Do("GET", uname))
+	p, err := redis.String(redi.Do("GET", data.Username))
 	if p != "" {
 		return
 	}
 
-	potato := uname + passwd
-	passhash, salt := models.Create(passwd, potato)
+	potato := data.Username + data.Password
+	passhash, salt := models.Create(data.Password, potato)
 
-	_, err = redi.Do("SET", uname, passhash)
+	_, err = redi.Do("SET", data.Username, passhash)
 	if err != nil {
 		return
 	}
@@ -40,7 +52,7 @@ func Register(g *gin.Context){
 
 	pool = models.NewPool(2)
 	redi = pool.Get() //connect redis
-	_, err = redi.Do("SET", salt, uname)
+	_, err = redi.Do("SET", salt, data.Username)
 	if err != nil {
 		return
 	}
