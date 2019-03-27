@@ -4,7 +4,7 @@ import(
 	"github.com/gin-gonic/gin"
 	"github.com/mntky/foruka-go/models"
 	"github.com/gomodule/redigo/redis"
-	"fmt"
+	//"fmt"
 	"strings"
 	//"net/http"
 )
